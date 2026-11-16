@@ -53,6 +53,8 @@
   .btn:hover{background:#0077ed}
   .art{display:flex;align-items:center;justify-content:center;min-height:200px}
   .art svg{width:100%;max-width:380px;height:auto}
+  .art img{width:100%;max-width:440px;height:auto;mix-blend-mode:multiply}
+  .card:not(.hero) .art img{max-width:190px;max-height:190px;width:auto}
   .card:not(.hero) .art{height:180px;min-height:0;margin-bottom:18px}
   .card:not(.hero) .art svg{max-width:170px;max-height:180px}
   .checked{text-align:center;font-size:13px;color:var(--mute);padding:6px 0 0}
@@ -89,6 +91,7 @@
     .card{padding:30px 26px}
     .card.hero .art{order:-1;min-height:150px}
     .card.hero .art svg{max-width:260px}
+    .card.hero .art img{max-width:300px}
     .steps{grid-template-columns:1fr}
     section{padding:60px 0}
     nav a.link{display:none}
@@ -152,10 +155,10 @@ const DYQANET = ["Neptun","Aztech","GjirafaMall","Foleja","ETC"];
 const OFERTAT = [
   { emri:'TV LG 75" QNED 4K', dyqani:"Neptun", cmimi:699, vjeter:"1,549 €", kursen:850,
     prova:"I njëjti model te GjirafaMall: 1,549.50 €", shenim:"Me kartelën haPPy të Neptun (falas)",
-    link:"https://www.neptun-ks.com/categories/tv/TV-QNED-LG-75QNED85A3C", art:"tv" },
+    link:"https://www.neptun-ks.com/categories/tv/TV-QNED-LG-75QNED85A3C", art:"tv", foto:"img/tv.jpg" },
   { emri:"Rrobalarëse Midea 7 kg", dyqani:"Aztech", cmimi:179, vjeter:"349 €", kursen:170,
     prova:"Çmimi i rregullt te Aztech: 349 €", shenim:"",
-    link:"https://aztechonline.com/rrobalarese-midea-mf110w70-w-hr-1200rpm-7kg", art:"washer" },
+    link:"https://aztechonline.com/rrobalarese-midea-mf110w70-w-hr-1200rpm-7kg", art:"washer", foto:"img/washer.png" },
   { emri:"Fshesë robot Rowenta", dyqani:"Neptun", cmimi:159, vjeter:"399 €", kursen:240,
     prova:"Çmimi i rregullt te Neptun: 399 €", shenim:"Me kartelën haPPy të Neptun (falas)",
     link:"https://www.neptun-ks.com/categories/fshes-robotike/FSHESE-ROBOT-ROWENTA-RR8577WH", art:"robot" }
@@ -176,6 +179,8 @@ function kosovoNow(){
 }
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
+const pamja = o => o.foto ? `<img src="${esc(o.foto)}" alt="${esc(o.emri)}" loading="lazy">` : ART[o.art];
+
 function render(){
   const grid = document.getElementById("grid");
   const live = kosovoNow().date === DITA;
@@ -187,7 +192,7 @@ function render(){
   }
   grid.innerHTML = OFERTAT.map((o,i)=>`
     <article class="card ${i===0?"hero":""}">
-      ${i===0?"":`<div class="art">${ART[o.art]}</div>`}
+      ${i===0?"":`<div class="art">${pamja(o)}</div>`}
       <div style="display:flex;flex-direction:column">
         <div class="rank">#${i+1} · ${esc(o.dyqani)}</div>
         <div class="old">${esc(o.vjeter)}</div>
@@ -198,7 +203,7 @@ function render(){
         ${o.shenim?`<p class="note">${esc(o.shenim)}</p>`:""}
         <a class="btn" href="${esc(o.link)}" target="_blank" rel="noopener" data-i="${i}">Shiko te ${esc(o.dyqani)}</a>
       </div>
-      ${i===0?`<div class="art">${ART[o.art]}</div>`:""}
+      ${i===0?`<div class="art">${pamja(o)}</div>`:""}
     </article>`).join("");
   const [y,m,d] = DITA.split("-");
   document.getElementById("checked").textContent = `Çmimet u kontrolluan më ${d}.${m}.${y}.`;

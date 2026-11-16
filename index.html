@@ -196,7 +196,7 @@ function render(){
         <h2>${esc(o.emri)}</h2>
         <p class="proof">${esc(o.prova)}</p>
         ${o.shenim?`<p class="note">${esc(o.shenim)}</p>`:""}
-        <a class="btn" href="${esc(o.link)}" target="_blank" rel="noopener">Shiko te ${esc(o.dyqani)}</a>
+        <a class="btn" href="${esc(o.link)}" target="_blank" rel="noopener" data-i="${i}">Shiko te ${esc(o.dyqani)}</a>
       </div>
       ${i===0?`<div class="art">${ART[o.art]}</div>`:""}
     </article>`).join("");
@@ -218,6 +218,23 @@ function tick(){
 tick(); setInterval(tick,1000);
 document.getElementById("stores").innerHTML = DYQANET.map(d=>`<span>${esc(d)}</span>`).join("");
 document.getElementById("wa").href = WHATSAPP;
+
+/* ====== Numërimi i vizitave dhe klikimeve ====== */
+const SB_URL = "https://flblusvodpamtvfazpfg.supabase.co/rest/v1/events";
+const SB_KEY = "sb_publishable_BUZQ2tO52WE9Zwsd89Pw8w_deyYjvZZ";
+const SOURCE = (new URLSearchParams(location.search).get("s") || "").slice(0,60) || null;
+function track(kind, o){
+  try{
+    fetch(SB_URL, { method:"POST", keepalive:true,
+      headers:{ "apikey":SB_KEY, "Authorization":"Bearer "+SB_KEY, "Content-Type":"application/json", "Prefer":"return=minimal" },
+      body: JSON.stringify({ kind, product:o?o.emri:null, store:o?o.dyqani:null, day:DITA, source:SOURCE }) }).catch(()=>{});
+  }catch(e){}
+}
+if(!/localhost|127\.0\.0\.1/.test(location.hostname)) track("view");
+document.getElementById("grid").addEventListener("click", e=>{
+  const a = e.target.closest("a[data-i]"); if(a) track("click", OFERTAT[+a.dataset.i]);
+});
+document.getElementById("wa").addEventListener("click", ()=>track("whatsapp"));
 </script>
 </body>
 </html>

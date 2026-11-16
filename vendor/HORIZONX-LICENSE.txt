@@ -1,0 +1,64 @@
+HorizonX Drops License 1.0
+
+Copyright (c) 2026 HorizonX Labs LLC (https://horizonx.so). All rights reserved except as
+granted below.
+
+"Drops" means the source code, shaders and documentation in this repository and
+any copy of them installed through the HorizonX Drops registry.
+
+Exception: the Elastic Mesh drop (registry/drops/elastic-mesh, installed as
+elastic-mesh) is published under the MIT License, whose full text is at the top
+of its engine file. This license does not apply to it.
+
+"End Product" means a website, web app, mobile app, game, video, presentation or
+other finished work in which a Drop is one part, and whose main value comes from
+something other than the Drop itself.
+
+1. What you may do
+
+   a. Use, copy and modify the Drops, free of charge, in any number of End
+      Products, for yourself or for clients, personal or commercial.
+   b. Sell, distribute or give away End Products that contain the Drops, in
+      source or compiled form, as long as the Drops are not offered separately
+      from the End Product.
+   c. Share screenshots and recordings of the Drops and of your End Products.
+
+2. What you may not do
+
+   a. Redistribute, sell, sublicense or publish the Drops, modified or not, on
+      their own or as part of a component library, UI kit, template pack,
+      registry, design-system package, starter kit, code generator, theme or any
+      product whose main purpose is to let other people reuse the Drops.
+   b. Include the Drops in a dataset used to train or fine-tune a machine
+      learning model, or in a product that generates them on request.
+   c. Claim you made the Drops, or remove this notice or the provenance banner
+      at the top of each engine file.
+   d. Use the HorizonX name or logo to suggest that HorizonX endorses your End
+      Product.
+
+3. Attribution
+
+   Attribution in the End Product is appreciated but not required. The notice
+   at the top of each file must stay in the source.
+
+4. Relationship to HorizonX plans
+
+   This license covers only the Drops published in this repository. Other
+   HorizonX tools, variants, editor exports and assets are covered by the
+   HorizonX Terms (https://horizonx.so/terms) and the plan they were obtained
+   under.
+
+5. Termination
+
+   If you break this license, your rights under it end automatically. End
+   Products you shipped before that and that complied with it may stay
+   published.
+
+6. No warranty
+
+   THE DROPS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+   HORIZONX BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+   WITH THE DROPS OR THEIR USE.

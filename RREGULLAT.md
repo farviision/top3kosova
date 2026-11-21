@@ -29,15 +29,16 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 ## 4. Kur një produkt pranohet (të gjitha kushtet njëherësh)
 
-1. Çmimi i ri është **100 € ose më shumë**.
+1. Çmimi i ri është **100 € ose më shumë dhe nën 1,000 €** (vendim i Fatosit, 21.11.2026: produktet mbi 1,000 € nuk shiten te publiku ynë).
 2. Dyqani tregon vetë **çmimin e vjetër** në faqen e produktit.
 3. Zbritja është **të paktën 20% dhe të paktën 50 €**.
 4. Produkti është **në stok** dhe mund të blihet online ose në dyqan, sipas faqes.
 5. Çmimi u lexua **sot, pas orës 06:00**, nga faqja e produktit (jo nga faqja e kategorisë, jo nga Google, jo nga memoria).
 6. Çmimi lexohet **dy herë**: një herë nga të dhënat e strukturuara (JSON / JSON-LD) dhe një herë nga teksti i dukshëm. Nëse nuk përputhen, produkti refuzohet.
 7. Foto **zyrtare** nga faqja e produktit të dyqanit. Pa foto zyrtare, produkti refuzohet.
-8. Kushtet shkruhen në `shenim`: kartela besnikërie, afati i ofertës, "vetëm online" etj. Nëse ka kusht që nuk e kupton, refuzoje.
-9. Afati i ofertës, nëse shfaqet, nuk mbaron sot para mesnatës.
+8. Produktet me etiketën **"Outlet"** te Neptun (`EyecatchersList` përmban `Outlet_-_Sticker`) refuzohen gjithmonë: zakonisht janë copa ekspozite me sasi 1.
+9. Kushtet shkruhen në `shenim`: kartela besnikërie, afati i ofertës, "vetëm online" etj. Nëse ka kusht që nuk e kupton, refuzoje.
+10. Afati i ofertës, nëse shfaqet, nuk mbaron sot para mesnatës.
 
 ## 5. Mbrojtja nga zbritjet e rreme
 

@@ -29,7 +29,7 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 ## 4. Kur një produkt pranohet (të gjitha kushtet njëherësh)
 
-1. Çmimi i ri është **100 € ose më shumë dhe nën 1,000 €** (vendim i Fatosit, 21.11.2026: produktet mbi 1,000 € nuk shiten te publiku ynë).
+1. Çmimi i ri është **50 € ose më shumë dhe nën 1,000 €** (vendim i Fatosit, 21.11.2026: produktet mbi 1,000 € nuk shiten te publiku ynë; 23.11.2026: kufiri i poshtëm u ul nga 100 € në 50 €). Kontrollo edhe produktet 50–99.99 € në të gjitha dyqanet, jo vetëm ato mbi 100 €.
 2. Dyqani tregon vetë **çmimin e vjetër** në faqen e produktit.
 3. Zbritja është **të paktën 20% dhe të paktën 50 €**.
 4. Produkti është **në stok** dhe mund të blihet online ose në dyqan, sipas faqes.

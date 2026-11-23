@@ -51,11 +51,16 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 ## 6. Si zgjidhen 3 ofertat
 
+Vendim i Fatosit, 23.11.2026: faqja duhet të duket e larmishme dhe e paanshme. Jo çdo ditë të njëjtat dyqane, jo dy produkte të njëjta në një ditë.
+
 1. Rendit produktet e pranuara sipas **`kursen` në euro**, nga më i madhi.
-2. Maksimumi **2 oferta nga i njëjti dyqan**.
-3. Maksimumi **2 oferta nga e njëjta kategori** (TV, lavatriçe, frigorifer, laptop, mobilie...).
-4. Mos e përsërit një produkt që ishte në faqe në **3 ditët e fundit**, përveç nëse nuk ka zgjedhje tjetër që i plotëson rregullat.
-5. Nëse ka më pak se 3 produkte të pranuara: **nuk publikon asgjë** (faqja shfaq vetë "ofertat e reja vijnë nesër") dhe e shkruan arsyen në raport.
+2. **Tre dyqane të ndryshme.** Secila nga 3 ofertat vjen nga një dyqan tjetër. Vetëm nëse pas kontrollit të plotë të të gjitha dyqaneve nuk ka asnjë produkt të pranuar nga një dyqan i tretë, lejohen 2 nga i njëjti dyqan, dhe raporti shkruan qartë pse (sa produkte u kontrolluan në secilin dyqan dhe pse asnjë nuk kaloi).
+3. **Jo vetëm Neptun dhe Aztech.** Të paktën 1 ofertë çdo ditë vjen nga GjirafaMall ose Foleja, nëse aty ka qoftë edhe një produkt që i plotëson të gjitha kushtet e pikës 4 dhe 5 (edhe me kursim më të vogël se produktet e Neptun/Aztech).
+4. **Tri kategori të ndryshme.** Maksimumi **1 ofertë nga e njëjta kategori** (TV, lavatriçe/rrobalarëse, tharëse, frigorifer, telefon, laptop, kuzhinë, mobilie, audio...). Lavatriçja dhe tharësja janë kategori të ndryshme, por dy lavatriçe jo.
+5. **Asnjë përsëritje për 7 ditë.** Një produkt (i njëjti kod modeli) që ishte në faqe në **7 ditët e fundit** nuk publikohet përsëri. Lexo `main` me `git log -p -- index.html` për 7 ditët e fundit.
+6. **Jo e njëjta markë dy herë** në të njëjtën ditë, nëse ka alternativë që i plotëson rregullat.
+7. Nëse ka më pak se 3 produkte që i plotësojnë rregullat 2–6: **nuk publikon asgjë** (faqja shfaq vetë "ofertat e reja vijnë nesër") dhe e shkruan arsyen në raport. Kur rregullat e larmisë (2, 3, 4, 6) e pengojnë publikimin, lejohet të lirohen në këtë radhë, një nga një: 6, pastaj 3, pastaj 2. Rregulli 4 dhe 5 nuk lirohen kurrë. Çdo lirim shkruhet në raport.
+8. Merr kohën që të duhet: kontrollo **të gjitha** kategoritë e çdo dyqani, jo vetëm faqen e ofertave. Kufiri i vetëm është ora 08:30 e pikës 2.
 
 ## 7. Çfarë ndryshon në faqe (vetëm kaq)
 
@@ -82,7 +87,18 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 ## 9. Raporti i çdo dite
 
-Shkruaj `raportet/YYYY-MM-DD.md` (dega `agjenti`) (edhe në provë, edhe kur nuk publikon):
+Shkruaj `raportet/YYYY-MM-DD.md` (dega `agjenti`) (edhe në provë, edhe kur nuk publikon).
+
+**Raporti fillon gjithmonë me seksionin `## Përmbledhja për Fatosin`** (shqip i thjeshtë, maksimumi 15 rreshta), në këtë formë të saktë:
+- `Publikuar:` PO / JO, ora e push-it.
+- `Çmime të kontrolluara sot:` numri total, dhe sipas dyqanit (Neptun X, Aztech X, GjirafaMall X, Foleja X). `Dyqane që nuk u hapën:` emrat ose "asnjë".
+- `Kandidatë që i plotësuan kushtet e pikës 4 dhe 5:` numri, sipas dyqanit.
+- `Pse këto 3:` një rresht për secilën ofertë: produkti, dyqani, çmimi, kursimi, dhe arsyeja pse fitoi (p.sh. "kursimi më i madh i vërtetë te GjirafaMall; i njëjti model nuk gjendet më lirë gjetiu").
+- `Larmia:` 3 dyqanet, 3 kategoritë, dhe a u lirua ndonjë rregull i larmisë (cili dhe pse).
+- `Përsëritje:` konfirmim që asnjë nga 3 nuk ishte në faqe në 7 ditët e fundit.
+- `Rreziqe:` çdo gjë e pasigurt (afat oferte, kartelë besnikërie, stok i ulët), ose "asnjë".
+
+Pas përmbledhjes, detajet:
 - 3 ofertat e zgjedhura, me çmimin, kursimin, krahasimin dhe linkun.
 - Për çdo çmim: URL-ja, ora e leximit dhe copa e saktë e tekstit/JSON-it nga u lexua.
 - 5 kandidatët e radhës që nuk hynë dhe pse.

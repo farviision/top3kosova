@@ -29,9 +29,9 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 ## 4. Kur një produkt pranohet (të gjitha kushtet njëherësh)
 
-1. Çmimi i ri është **50 € ose më shumë dhe nën 1,000 €** (vendim i Fatosit, 21.11.2026: produktet mbi 1,000 € nuk shiten te publiku ynë; 23.11.2026: kufiri i poshtëm u ul nga 100 € në 50 €). Kontrollo edhe produktet 50–99.99 € në të gjitha dyqanet, jo vetëm ato mbi 100 €.
+1. **Çmimi i ri (i zbritur)** është **50 € ose më shumë dhe nën 1,000 €** (vendim i Fatosit, 21.11 dhe 23.11.2026). **Çmimi i vjetër nuk ka kufi**: mund të jetë edhe mbi 1,000 € (p.sh. nga 1,499 € në 899 € pranohet). Kontrollo të gjitha produktet 50–999.99 € në të gjitha dyqanet.
 2. Dyqani tregon vetë **çmimin e vjetër** në faqen e produktit.
-3. Zbritja është **të paktën 20% dhe të paktën 50 €**.
+3. Zbritja **reale** (pika 5) është **të paktën 20%**. Nuk ka më minimum në euro (vendim i Fatosit, 23.11.2026).
 4. Produkti është **në stok** dhe mund të blihet online ose në dyqan, sipas faqes.
 5. Çmimi u lexua **sot, pas orës 06:00**, nga faqja e produktit (jo nga faqja e kategorisë, jo nga Google, jo nga memoria).
 6. Çmimi lexohet **dy herë**: një herë nga të dhënat e strukturuara (JSON / JSON-LD) dhe një herë nga teksti i dukshëm. Nëse nuk përputhen, produkti refuzohet.
@@ -45,7 +45,8 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 - Kërko të njëjtin model (i njëjti kod modeli) në dyqanet e tjera të listës.
 - **Kursimi (`kursen`) llogaritet ndaj çmimit më të ulët real:** min(çmimi i vjetër i dyqanit, çmimi më i lirë i të njëjtit model në një dyqan tjetër sot).
   Shembull: Aztech thotë "nga 3,790 €", por GjirafaMall e shet 2,999.50 €, atëherë kursimi llogaritet ndaj 2,999.50 €.
-- Nëse pas kësaj llogaritjeje zbritja bie nën 20% ose nën 50 €, produkti refuzohet.
+- **Përqindja reale e zbritjes** = `kursen` / çmimi më i ulët real (i njëjti min i rreshtit më lart) × 100. Kjo përqindje, jo ajo që shkruan dyqani, përdoret për pranimin dhe për renditjen.
+- Nëse pas kësaj llogaritjeje përqindja reale bie nën 20%, produkti refuzohet.
 - Kontrollo `historia-cmimeve.json` (dega `agjenti`): nëse çmimi "i vjetër" i dyqanit nuk është parë kurrë më parë dhe produkti ishte më lirë në 14 ditët e fundit, refuzoje (çmim i fryrë para zbritjes).
 - `prova` shkruan gjithmonë krahasimin që u përdor, p.sh. "I njëjti model te GjirafaMall: 1,549.50 €" ose "Çmimi i rregullt te Aztech: 349 €".
 
@@ -53,7 +54,7 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 
 Vendim i Fatosit, 23.11.2026: faqja duhet të duket e larmishme dhe e paanshme. Jo çdo ditë të njëjtat dyqane, jo dy produkte të njëjta në një ditë.
 
-1. Rendit produktet e pranuara sipas **`kursen` në euro**, nga më i madhi.
+1. Rendit produktet e pranuara sipas **përqindjes reale të zbritjes** (pika 5), nga më e larta (vendim i Fatosit, 23.11.2026; më parë renditej sipas euro). Fiton produkti me përqindjen më të lartë që kalon të gjitha kontrollet e pikës 4 dhe 5. Në barazim (±1 pikë përqindjeje) fiton ai me më shumë `kursen` në euro. Oferta #1 në faqe është ajo me përqindjen reale më të lartë.
 2. **Tre dyqane të ndryshme.** Secila nga 3 ofertat vjen nga një dyqan tjetër. Vetëm nëse pas kontrollit të plotë të të gjitha dyqaneve nuk ka asnjë produkt të pranuar nga një dyqan i tretë, lejohen 2 nga i njëjti dyqan, dhe raporti shkruan qartë pse (sa produkte u kontrolluan në secilin dyqan dhe pse asnjë nuk kaloi).
 3. **Jo vetëm Neptun dhe Aztech.** Të paktën 1 ofertë çdo ditë vjen nga GjirafaMall ose Foleja, nëse aty ka qoftë edhe një produkt që i plotëson të gjitha kushtet e pikës 4 dhe 5 (edhe me kursim më të vogël se produktet e Neptun/Aztech).
 4. **Tri kategori të ndryshme.** Maksimumi **1 ofertë nga e njëjta kategori** (TV, lavatriçe/rrobalarëse, tharëse, frigorifer, telefon, laptop, kuzhinë, mobilie, audio...). Lavatriçja dhe tharësja janë kategori të ndryshme, por dy lavatriçe jo.

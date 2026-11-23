@@ -55,12 +55,19 @@ Vlera e faqes është besimi: çdo çmim duhet të jetë i saktë atë mëngjes 
 Vendim i Fatosit, 23.11.2026: faqja duhet të duket e larmishme dhe e paanshme. Jo çdo ditë të njëjtat dyqane, jo dy produkte të njëjta në një ditë.
 
 1. Rendit produktet e pranuara sipas **përqindjes reale të zbritjes** (pika 5), nga më e larta (vendim i Fatosit, 23.11.2026; më parë renditej sipas euro). Fiton produkti me përqindjen më të lartë që kalon të gjitha kontrollet e pikës 4 dhe 5. Në barazim (±1 pikë përqindjeje) fiton ai me më shumë `kursen` në euro. Oferta #1 në faqe është ajo me përqindjen reale më të lartë.
+1b. **Tre nivele çmimi (vendim i Fatosit, 23.11.2026).** Çdo ditë 1 ofertë nga secili nivel i çmimit të ri (të zbritur):
+   - **E lirë:** 50 – 199.99 €
+   - **E mesme:** 200 – 499.99 €
+   - **E shtrenjtë:** 500 – 999.99 €
+   Brenda secilit nivel fiton produkti me përqindjen reale më të lartë, që respekton rregullat 2–6 bashkë me dy ofertat e tjera. Qëllimi: faqja të mos ketë vetëm produkte të lira (p.sh. tri me 75 €), por një zgjedhje për çdo buxhet.
+   Nëse një nivel nuk ka asnjë produkt që i kalon kontrollet e pikës 4 dhe 5, merret produkti më i mirë i radhës nga niveli fqinj (fillimisht nga i mesmi), dhe raporti shkruan qartë cili nivel mbeti bosh dhe sa produkte u kontrolluan aty.
+   Në faqe renditen sipas përqindjes reale: #1 = përqindja më e lartë nga të tria.
 2. **Tre dyqane të ndryshme.** Secila nga 3 ofertat vjen nga një dyqan tjetër. Vetëm nëse pas kontrollit të plotë të të gjitha dyqaneve nuk ka asnjë produkt të pranuar nga një dyqan i tretë, lejohen 2 nga i njëjti dyqan, dhe raporti shkruan qartë pse (sa produkte u kontrolluan në secilin dyqan dhe pse asnjë nuk kaloi).
 3. **Jo vetëm Neptun dhe Aztech.** Të paktën 1 ofertë çdo ditë vjen nga GjirafaMall ose Foleja, nëse aty ka qoftë edhe një produkt që i plotëson të gjitha kushtet e pikës 4 dhe 5 (edhe me kursim më të vogël se produktet e Neptun/Aztech).
 4. **Tri kategori të ndryshme.** Maksimumi **1 ofertë nga e njëjta kategori** (TV, lavatriçe/rrobalarëse, tharëse, frigorifer, telefon, laptop, kuzhinë, mobilie, audio...). Lavatriçja dhe tharësja janë kategori të ndryshme, por dy lavatriçe jo.
 5. **Asnjë përsëritje për 7 ditë.** Një produkt (i njëjti kod modeli) që ishte në faqe në **7 ditët e fundit** nuk publikohet përsëri. Lexo `main` me `git log -p -- index.html` për 7 ditët e fundit.
 6. **Jo e njëjta markë dy herë** në të njëjtën ditë, nëse ka alternativë që i plotëson rregullat.
-7. Nëse ka më pak se 3 produkte që i plotësojnë rregullat 2–6: **nuk publikon asgjë** (faqja shfaq vetë "ofertat e reja vijnë nesër") dhe e shkruan arsyen në raport. Kur rregullat e larmisë (2, 3, 4, 6) e pengojnë publikimin, lejohet të lirohen në këtë radhë, një nga një: 6, pastaj 3, pastaj 2. Rregulli 4 dhe 5 nuk lirohen kurrë. Çdo lirim shkruhet në raport.
+7. Nëse ka më pak se 3 produkte që i plotësojnë rregullat 2–6: **nuk publikon asgjë** (faqja shfaq vetë "ofertat e reja vijnë nesër") dhe e shkruan arsyen në raport. Kur rregullat e larmisë (1b, 2, 3, 4, 6) e pengojnë publikimin, lejohet të lirohen në këtë radhë, një nga një: 6, pastaj 3, pastaj 2, pastaj 1b (vetëm me zëvendësimin nga niveli fqinj që përshkruan 1b). Rregulli 4 dhe 5 nuk lirohen kurrë. Çdo lirim shkruhet në raport.
 8. Merr kohën që të duhet: kontrollo **të gjitha** kategoritë e çdo dyqani, jo vetëm faqen e ofertave. Kufiri i vetëm është ora 08:30 e pikës 2.
 
 ## 7. Çfarë ndryshon në faqe (vetëm kaq)
@@ -95,7 +102,7 @@ Shkruaj `raportet/YYYY-MM-DD.md` (dega `agjenti`) (edhe në provë, edhe kur nuk
 - `Çmime të kontrolluara sot:` numri total, dhe sipas dyqanit (Neptun X, Aztech X, GjirafaMall X, Foleja X). `Dyqane që nuk u hapën:` emrat ose "asnjë".
 - `Kandidatë që i plotësuan kushtet e pikës 4 dhe 5:` numri, sipas dyqanit.
 - `Pse këto 3:` një rresht për secilën ofertë: produkti, dyqani, çmimi, kursimi, dhe arsyeja pse fitoi (p.sh. "kursimi më i madh i vërtetë te GjirafaMall; i njëjti model nuk gjendet më lirë gjetiu").
-- `Larmia:` 3 dyqanet, 3 kategoritë, dhe a u lirua ndonjë rregull i larmisë (cili dhe pse).
+- `Larmia:` 3 nivelet e çmimit (e lirë / e mesme / e shtrenjtë), 3 dyqanet, 3 kategoritë, dhe a u lirua ndonjë rregull i larmisë (cili dhe pse).
 - `Përsëritje:` konfirmim që asnjë nga 3 nuk ishte në faqe në 7 ditët e fundit.
 - `Rreziqe:` çdo gjë e pasigurt (afat oferte, kartelë besnikërie, stok i ulët), ose "asnjë".
 

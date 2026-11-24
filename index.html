@@ -208,15 +208,24 @@ function kosovoNow(){
     .formatToParts(new Date()).map(x=>[x.type,x.value]));
   return { date:`${p.year}-${p.month}-${p.day}`, secs:(+p.hour%24)*3600 + +p.minute*60 + +p.second };
 }
+/* Ofertat vlejnë nga DITA 07:00 deri DITA+1 07:00 (koha e Kosovës). Natën mbeten në faqe;
+   nëse të rejat vonohen, të vjetrat qëndrojnë deri në 08:00 dhe pastaj del mesazhi "po kontrollohen". */
+const NDERRIMI = 7*3600, VONESA = 3600;
+function sekondaNgaHapja(now){
+  const [y,m,d] = DITA.split("-").map(Number), [Y,M,D] = now.date.split("-").map(Number);
+  const dite = Math.round((Date.UTC(Y,M-1,D) - Date.UTC(y,m-1,d)) / 86400000);
+  return dite*86400 + now.secs - NDERRIMI;
+}
+const eshteLive = now => { const e = sekondaNgaHapja(now); return e >= -NDERRIMI && e < 86400 + VONESA; };
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const pamja = o => o.foto ? `<img src="${esc(o.foto)}" alt="${esc(o.emri)}" loading="lazy">` : ART[o.art];
 
 function render(){
   const grid = document.getElementById("grid");
-  const live = kosovoNow().date === DITA;
+  const live = eshteLive(kosovoNow());
   if(!live){
-    grid.innerHTML = `<div class="empty"><h2>3 ofertat e sotme po kontrollohen.</h2><p>Ofertat e djeshme u zhdukën. Të rejat dalin sot në mëngjes.</p></div>`;
+    grid.innerHTML = `<div class="empty"><h2>3 ofertat e sotme po kontrollohen.</h2><p>Ofertat e djeshme u zhdukën. Të rejat dalin çdo mëngjes në 07:00.</p></div>`;
     document.querySelector(".timer small").textContent = "3 oferta të reja";
     document.getElementById("checked").textContent = "";
     return false;
@@ -251,12 +260,13 @@ function reveal(){
 let live = render();
 function tick(){
   const now = kosovoNow();
-  if((now.date === DITA) !== live) live = render();
-  const left = 86400 - now.secs;
+  if(eshteLive(now) !== live) live = render();
+  const left = Math.max(0, Math.min(86400, 86400 - sekondaNgaHapja(now)));
+  if(live) document.querySelector(".timer small").textContent = left > 0 ? "Këto 3 oferta digjen pas" : "3 oferta të reja po vijnë";
   const h = String(Math.floor(left/3600)).padStart(2,"0"),
         m = String(Math.floor(left%3600/60)).padStart(2,"0"),
         s = String(left%60).padStart(2,"0");
-  document.getElementById("clock").textContent = live ? `${h}:${m}:${s}` : "së shpejti";
+  document.getElementById("clock").textContent = live && left > 0 ? `${h}:${m}:${s}` : "së shpejti";
 }
 tick(); setInterval(tick,1000);
 document.getElementById("stores").innerHTML = DYQANET.map(d=>`<span>${esc(d)}</span>`).join("");

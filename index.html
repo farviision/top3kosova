@@ -208,15 +208,14 @@ function kosovoNow(){
     .formatToParts(new Date()).map(x=>[x.type,x.value]));
   return { date:`${p.year}-${p.month}-${p.day}`, secs:(+p.hour%24)*3600 + +p.minute*60 + +p.second };
 }
-/* Ofertat vlejnë nga DITA 07:00 deri DITA+1 07:00 (koha e Kosovës). Natën mbeten në faqe;
-   nëse të rejat vonohen, të vjetrat qëndrojnë deri në 08:00 dhe pastaj del mesazhi "po kontrollohen". */
-const NDERRIMI = 7*3600, VONESA = 3600;
+/* Ofertat qëndrojnë gjatë natës dhe ndërrohen në 07:00 me orën e Kosovës. */
+const NDERRIMI = 7*3600;
 function sekondaNgaHapja(now){
   const [y,m,d] = DITA.split("-").map(Number), [Y,M,D] = now.date.split("-").map(Number);
   const dite = Math.round((Date.UTC(Y,M-1,D) - Date.UTC(y,m-1,d)) / 86400000);
   return dite*86400 + now.secs - NDERRIMI;
 }
-const eshteLive = now => { const e = sekondaNgaHapja(now); return e >= -NDERRIMI && e < 86400 + VONESA; };
+const eshteLive = now => { const e = sekondaNgaHapja(now); return e >= 0 && e < 86400; };
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 const pamja = o => o.foto ? `<img src="${esc(o.foto)}" alt="${esc(o.emri)}" loading="lazy">` : ART[o.art];
@@ -258,9 +257,27 @@ function reveal(){
   document.querySelectorAll(".card,.step").forEach((el,i)=>{ el.classList.add("reveal"); el.style.transitionDelay=(i%3*80)+"ms"; io.observe(el); });
 }
 let live = render();
+let checkingOffers = false, nextOfferCheck = 0;
+// An open overnight tab also picks up the next day's deployed offers.
+async function checkNewOffers(now){
+  if(checkingOffers || Date.now() < nextOfferCheck || sekondaNgaHapja(now) < 86400) return;
+  checkingOffers = true;
+  nextOfferCheck = Date.now() + 30000;
+  try {
+    const url = new URL(location.href);
+    url.searchParams.set("_offers", String(Date.now()));
+    const response = await fetch(url, {cache:"no-store"});
+    if(!response.ok) return;
+    const html = await response.text();
+    const date = html.match(/const DITA\s*=\s*"(\d{4}-\d{2}-\d{2})"/);
+    if(date && date[1] > DITA && date[1] === now.date) location.reload();
+  } catch { /* Retry quietly when the connection or deployment recovers. */ }
+  finally { checkingOffers = false; }
+}
 function tick(){
   const now = kosovoNow();
   if(eshteLive(now) !== live) live = render();
+  void checkNewOffers(now);
   const left = Math.max(0, Math.min(86400, 86400 - sekondaNgaHapja(now)));
   if(live) document.querySelector(".timer small").textContent = left > 0 ? "Këto 3 oferta digjen pas" : "3 oferta të reja po vijnë";
   const h = String(Math.floor(left/3600)).padStart(2,"0"),
